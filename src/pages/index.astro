@@ -1,5 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import portrait from '../assets/portrait.jpg';
 // Component Imports
 import CallToAction from '../components/CallToAction.astro';
 // Page section components
@@ -10,7 +12,6 @@ import Icon from '../components/Icon.astro';
 import Pill from '../components/Pill.astro';
 import PortfolioPreview from '../components/PortfolioPreview.astro';
 import Technologies from '../components/Technologies.astro';
-import Skills from '../components/Skills.astro';
 // Layout import — provides basic page elements: <head>, <nav>, <footer> etc.
 import BaseLayout from '../layouts/BaseLayout.astro';
 
@@ -28,7 +29,7 @@ const projects = (await getCollection('work'))
 		<div class="wrapper stack gap-8 lg:gap-20">
 			<header class="hero">
 				<Hero
-					title="Hello, my name is Alejo Arenas"
+					title="Hello, my name is Alejooooooo Arenas"
 					tagline="I am web developer based in Spain."
 					align="start"
 				>
@@ -39,11 +40,10 @@ const projects = (await getCollection('work'))
 					</div>
 				</Hero>
 
-				<img
+				<Image
 					alt="Alejo Arenas smiling in a red plaid shirt and tortoise shell glasses"
-					width="480"
-					height="620"
-					src="/assets/portrait.jpg"
+					src={portrait}
+					loading="eager"
 				/>
 			</header>
 
