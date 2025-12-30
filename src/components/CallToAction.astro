@@ -1,12 +1,14 @@
 ---
 interface Props {
 	href: string;
+	size?: 'md' | 'lg';
+	variant?: 'primary' | 'secondary';
 }
 
-const { href } = Astro.props;
+const { href, size = 'lg', variant = 'primary' } = Astro.props;
 ---
 
-<a href={href}><slot /></a>
+<a href={href} class:list={[variant, size]} target="_blank" rel="noopener noreferrer"><slot /></a>
 
 <style>
 	a {
@@ -21,19 +23,41 @@ const { href } = Astro.props;
 		line-height: 1.1;
 		border-radius: 999rem;
 		overflow: hidden;
-		background: var(--gradient-accent-orange);
-		box-shadow: var(--shadow-md);
 		white-space: nowrap;
+		transition: color var(--theme-transition), background-color var(--theme-transition), border-color var(--theme-transition);
+	}
+
+	/* Primary Variant */
+	.primary {
+		background: var(--gradient-accent);
+		box-shadow: var(--shadow-md);
+		border: 1px solid transparent;
+	}
+
+	/* Secondary Variant */
+	.secondary {
+		background: transparent;
+		color: var(--accent-regular);
+		border: 1px solid var(--accent-regular);
+	}
+
+	.secondary:hover {
+		background: var(--accent-regular);
+		color: var(--accent-text-over);
 	}
 
 	@media (min-width: 20em) {
 		a {
 			font-size: var(--text-lg);
 		}
+		
+		a.md {
+			font-size: var(--text-base);
+		}
 	}
 
-	/* Overlay for hover effects. */
-	a::after {
+	/* Overlay for hover effects (Primary only) */
+	.primary::after {
 		content: '';
 		position: absolute;
 		inset: 0;
@@ -42,8 +66,8 @@ const { href } = Astro.props;
 		mix-blend-mode: overlay;
 	}
 
-	a:focus::after,
-	a:hover::after {
+	.primary:focus::after,
+	.primary:hover::after {
 		background-color: hsla(var(--gray-999-basis), 0.3);
 	}
 
@@ -51,6 +75,11 @@ const { href } = Astro.props;
 		a {
 			padding: 1.125rem 2.5rem;
 			font-size: var(--text-xl);
+		}
+
+		a.md {
+			padding: 0.5rem 1.5rem;
+			font-size: var(--text-md);
 		}
 	}
 </style>

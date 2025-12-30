@@ -12,6 +12,8 @@ export const collections = {
 			tags: z.array(z.string()),
 			img: image(),
 			img_alt: z.string().optional(),
+			repo: z.string().optional(),
+			link: z.string().optional(),
 		}),
 	}),
 };

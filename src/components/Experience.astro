@@ -1,0 +1,88 @@
+---
+import ExperienceItem from "./ExperienceItem.astro";
+
+const EXPERIENCE = [
+  {
+    date: "2023 - Present",
+    title: "Organización en la \"Liga del Código\"",
+    company: "Universidad de Castilla-La Mancha",
+    link: "https://www.uclm.es/",
+    description:
+      "Participación como becario en “La Liga del Código”, una actividad dirigida a los alumnos de primer curso de Ingeniería Informática, que consiste en la enseñanza de programación en lenguajes como C y Java mediante técnicas de gamificación. Mis tareas dentro de la actividad incluyen proponer ejercicios prácticos, resolverlos con los alumnos y resolver sus dudas durante la competición",
+  },
+  {
+    date: "2023",
+    title: "Desarrollador de web app en PHP",
+    company: "LaGuardia & Moreira",
+    link: "https://laguardia-moreira.com",
+    description:
+      "Desarrollé una herramienta web (PHP, JavaScript y HTML/CSS) para cálculos de márgenes financieros, ofreciendo una aplicación potente con un diseño UX/UI minimalista. Gracias a su interfaz intuitiva y su facilidad de cálculo, la herramienta simplificó en gran medida la planificación de presupuestos por parte del personal de ventas.",
+  },
+];
+---
+
+<section class="experience-section" id="experience">
+  
+  <h2 class="section-title" style="text-align: center;">
+    <span>Experiencia </span><span style="color: var(--accent-regular);">Profesional</span>
+  </h2>
+
+  <div class="container">
+    <div class="timeline-wrapper" aria-label="Experiencia profesional">
+      <ol class="timeline-list">
+        {
+          EXPERIENCE.map((experience, index) => (
+            <li>
+              <article
+                role="article"
+                aria-labelledby={`experience-title-${index}`}
+              >
+                <ExperienceItem {...experience} />
+              </article>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .experience-section {
+    padding: 2rem;
+    margin-bottom: 1rem;
+    scroll-margin-top: 4rem;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    padding-top: 2rem;
+    max-width: 56rem; /* max-w-4xl */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .timeline-wrapper {
+    position: relative;
+    margin-top: 2rem;
+  }
+
+  .timeline-list {
+    position: relative;
+    margin-top: 2.5rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  @media (max-width: 768px) {
+    .experience-section {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+    
+    .timeline-wrapper {
+      margin-top: 0;
+    }
+  }
+</style>

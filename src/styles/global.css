@@ -77,6 +77,15 @@
 	--theme-transition: 0.2s ease-in-out;
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
+/* Scroll offset for fixed header */
+#top, #work, #experience {
+	scroll-margin-top: 150px;
+}
+
 :root.theme-dark {
 	--gray-0: #ffffff;
 	--gray-50: #f3f4f7;

@@ -22,16 +22,97 @@ const { title, description } = Astro.props;
 	<body>
 		<div class="stack backgrounds">
 			<Nav />
-			<slot />
+			<div class="content-wrapper">
+				<slot />
+			</div>
 			<Footer />
 		</div>
+
+		<button id="back-to-top" aria-label="Back to Top">
+			<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+				<path d="M18 15l-6-6-6 6"/>
+			</svg>
+		</button>
 
 		<script>
 			// Add “loaded” class once the document has completely loaded.
 			addEventListener('load', () => document.documentElement.classList.add('loaded'));
+
+			// Back to Top Button Logic
+			const backToTopButton = document.getElementById('back-to-top');
+			const footer = document.querySelector('footer');
+
+			if (backToTopButton) {
+				const handleScroll = () => {
+					if (window.scrollY > 300) {
+						backToTopButton.classList.add('visible');
+					} else {
+						backToTopButton.classList.remove('visible');
+					}
+
+					if (footer) {
+						const footerRect = footer.getBoundingClientRect();
+						const viewportHeight = window.innerHeight;
+						
+						// If footer is in view, push button up
+						if (footerRect.top < viewportHeight) {
+							const overlap = viewportHeight - footerRect.top;
+							// 2rem = 32px base spacing
+							backToTopButton.style.bottom = `${32 + overlap}px`;
+						} else {
+							backToTopButton.style.bottom = '2rem';
+						}
+					}
+				};
+
+				window.addEventListener('scroll', handleScroll);
+
+				backToTopButton.addEventListener('click', () => {
+					window.scrollTo({
+						top: 0,
+						behavior: 'smooth'
+					});
+				});
+			}
 		</script>
 
 		<style>
+			/* ... existing styles ... */
+			.content-wrapper {
+				padding-top: 120px; /* Offset for fixed header */
+			}
+
+			#back-to-top {
+				position: fixed;
+				bottom: 2rem;
+				right: 2rem;
+				background-color: var(--accent-regular);
+				color: var(--accent-text-over);
+				border: none;
+				border-radius: 50%;
+				width: 3rem;
+				height: 3rem;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				opacity: 0;
+				visibility: hidden;
+				transition: opacity 0.3s, visibility 0.3s, transform 0.2s;
+				z-index: 999;
+				box-shadow: var(--shadow-md);
+			}
+
+			#back-to-top.visible {
+				opacity: 1;
+				visibility: visible;
+			}
+
+			#back-to-top:hover {
+				transform: translateY(-2px);
+				background-color: var(--accent-light);
+			}
+
 			:root {
 				--_placeholder-bg: linear-gradient(transparent, transparent);
 				--bg-image-main: url('/assets/backgrounds/bg-main-light-800w.jpg');
