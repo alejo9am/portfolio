@@ -1,0 +1,139 @@
+---
+ 
+  // lista de posibles tecnologias para el logo wall:
+  // "astro",
+  // "vue",
+  // "react",
+  // "typeScript",
+  // "tailwindcss",
+  // "next",
+  // "nodejs",
+  // "HTML5",
+  // "CSS3",
+  // "javaScript",
+  // "git",
+  // "supabase",
+  // "mysql",
+  // "bash",
+
+const technologies = [
+  "php",
+  "HTML5",
+  "CSS3",
+  "javaScript",
+  "nodejs",
+  "express",
+  "git",
+  "mongodb",
+  "mysql",
+  "bash",
+];
+
+---
+
+<div class="logo-wall-container">
+  <div class="fade-overlay left"></div>
+  <div class="fade-overlay right"></div>
+
+  <div class="scroll-track">
+    {
+      [...technologies, ...technologies, ...technologies].map((tech) => (
+        <div class="logo-item">
+          <img
+            src={`/svg/${tech}.svg`}
+            alt={tech}
+            width="30"
+            height="30"
+            loading="lazy"
+          />
+          <span>
+            {tech.charAt(0).toUpperCase() + tech.slice(1)}
+          </span>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .logo-wall-container {
+    position: relative;
+    overflow: hidden;
+    padding: 2rem 0;
+    width: 100%;
+  }
+
+  .fade-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 8rem;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .fade-overlay.left {
+    left: 0;
+    background: linear-gradient(to right, var(--gray-999), transparent);
+  }
+
+  .fade-overlay.right {
+    right: 0;
+    background: linear-gradient(to left, var(--gray-999), transparent);
+  }
+
+  .scroll-track {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 3rem;
+    width: max-content;
+    animation: scroll 60s linear infinite;
+  }
+
+  .scroll-track:hover {
+    animation-play-state: paused;
+  }
+
+  .logo-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .logo-item img {
+    height: 1.75rem;
+    width: auto;
+    object-fit: contain;
+    opacity: 0.6;
+    transition: transform 0.3s ease;
+  }
+
+  .logo-item:hover img {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+
+  .logo-item span {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: var(--gray-300);
+  }
+
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-33.33%);
+    }
+  }
+
+  @media (min-width: 768px) {
+    .scroll-track {
+      gap: 5rem;
+      animation-duration: 50s;
+    }
+  }
+</style>
