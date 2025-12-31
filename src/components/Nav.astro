@@ -282,7 +282,6 @@ const isCurrentPage = (href: string) => {
     --icon-padding: 0.5rem;
 
     display: flex;
-    justify-content: space-between;
     gap: 0.75rem;
     padding: 1.5rem 2rem 1.5rem 1.5rem;
     background-color: var(--gray-999);
@@ -291,10 +290,14 @@ const isCurrentPage = (href: string) => {
   }
 
   .socials {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.625rem;
+    display: contents;
     font-size: var(--icon-size);
+  }
+
+  .cv-link-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: 0.5rem;
   }
 
   .social {
@@ -323,16 +326,17 @@ const isCurrentPage = (href: string) => {
     display: flex;
     align-items: center;
     height: calc(var(--icon-size) + 2 * var(--icon-padding));
+    margin-left: auto;
   }
 
   .cv-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.4rem 1rem;
-    color: var(--gray-100);
-    background-color: transparent;
-    border: 1px solid var(--gray-100);
+    padding: 0.5rem 0.75rem;
+    color: var(--accent-text-over);
+    background-color: var(--accent-regular);
+    border: 1px solid var(--accent-regular);
     border-radius: 999rem;
     text-decoration: none;
     font-weight: 600;
@@ -426,11 +430,23 @@ const isCurrentPage = (href: string) => {
       padding: 0;
       background-color: transparent;
       box-shadow: none;
+      display: flex;
+    }
+
+    .cv-link-wrapper {
+      display: contents;
     }
 
     .cv-link {
+      width: auto;
       color: var(--accent-text-over);
+      background-color: transparent;
       border-color: var(--accent-text-over);
+    }
+
+    .cv-link:hover {
+      background-color: var(--accent-text-over);
+      color: var(--accent-regular);
     }
 
     .socials {
