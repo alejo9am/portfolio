@@ -114,10 +114,10 @@ const isCurrentPage = (href: string) => {
 
       <div class="cv-link-wrapper">
         <a
-          href="https://1drv.ms/b/c/f7e5938dbcf0f9f1/IQCrl4MR5B9WSqpg4aclzcQUActXv40UUM_xk94YA-tHwDY?e=gWnHXL"
+          href="https://drive.google.com/file/d/1-1FEx6wPhNnPGgnzvS2p650ZdeNoCNRh/view?usp=sharing"
           class="cv-link"
-          target="_blank" rel="noopener noreferrer"
-          >CV</a
+          target="_blank"
+          rel="noopener noreferrer">CV</a
         >
       </div>
 
@@ -166,15 +166,15 @@ const isCurrentPage = (href: string) => {
 </script>
 
 <script>
-  const nav = document.querySelector('nav');
+  const nav = document.querySelector("nav");
   const handleScroll = () => {
     if (window.scrollY > 10) {
-      nav?.classList.add('scrolled');
+      nav?.classList.add("scrolled");
     } else {
-      nav?.classList.remove('scrolled');
+      nav?.classList.remove("scrolled");
     }
   };
-  window.addEventListener('scroll', handleScroll);
+  window.addEventListener("scroll", handleScroll);
 </script>
 
 <style>
@@ -187,7 +187,10 @@ const isCurrentPage = (href: string) => {
     font-weight: 500;
     background-color: transparent;
     border-bottom: 1px solid transparent;
-    transition: background-color 0.3s ease, border-bottom-color 0.3s ease, backdrop-filter 0.3s ease;
+    transition:
+      background-color 0.3s ease,
+      border-bottom-color 0.3s ease,
+      backdrop-filter 0.3s ease;
   }
 
   :global(nav.scrolled) {

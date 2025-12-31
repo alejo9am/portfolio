@@ -1,7 +1,7 @@
 ---
 title: MarginLab
 repo: https://github.com/alejo9am/marginlab
-link: https://marginlab.vercel.app/
+link: https://marginlab.alejoarenas.dev/
 publishDate: 2020-03-02 00:00:00
 img: ../../assets/marginlab.png
 img_alt: Langing page of MarginLab application

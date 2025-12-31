@@ -1,7 +1,7 @@
 ---
 title: Librería Online
 repo: https://github.com/alejo9am/libreria
-link: https://libreria-le6m.onrender.com/libreria/
+link: https://libreria.alejoarenas.dev/libreria/
 publishDate: 2019-10-02 00:00:00
 img: ../../assets/libreria.png
 img_alt: Image of the Librería application showing book listings

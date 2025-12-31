@@ -1,7 +1,7 @@
 ---
 title: NewBank
 repo: https://github.com/alejo9am/newbank
-link: https://alejo9am.github.io/newbank/
+link: https://newbank.alejoarenas.dev/
 publishDate: 2019-12-01 00:00:00
 img: ../../assets/newbank.png
 img_alt: Landing page of Newbank application
