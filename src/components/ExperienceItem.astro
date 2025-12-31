@@ -122,4 +122,23 @@ const { title, company, description, link, date } = Astro.props;
         grid-column: span 3;
     }
   }
+
+  @media (max-width: 768px) {
+    .experience-item {
+      margin-left: 1.5rem;
+      margin-right: 0;
+      gap: 1rem;
+      padding-bottom: 2rem;
+    }
+    .experience-item::before {
+      left: -20px;
+    }
+    .timeline-dot {
+      left: -26px;
+      font-size: 2rem;
+    }
+    .header {
+      padding-bottom: 1rem;
+    }
+  }
 </style>
