@@ -301,7 +301,7 @@ const isCurrentPage = (href: string) => {
     display: flex;
     padding: var(--icon-padding);
     text-decoration: none;
-    color: var(--accent-text-over);
+    color: var(--gray-100);
     transition: color var(--theme-transition);
   }
 
@@ -330,9 +330,9 @@ const isCurrentPage = (href: string) => {
     align-items: center;
     justify-content: center;
     padding: 0.4rem 1rem;
-    color: var(--accent-text-over);
+    color: var(--gray-100);
     background-color: transparent;
-    border: 1px solid var(--accent-text-over);
+    border: 1px solid var(--gray-100);
     border-radius: 999rem;
     text-decoration: none;
     font-weight: 600;
@@ -409,7 +409,7 @@ const isCurrentPage = (href: string) => {
 
     .link:hover,
     .link:focus {
-      color: var(--gray-100);
+      color: var(--accent-text-over);
       background-color: var(--accent-subtle-overlay);
     }
 
@@ -428,6 +428,11 @@ const isCurrentPage = (href: string) => {
       box-shadow: none;
     }
 
+    .cv-link {
+      color: var(--accent-text-over);
+      border-color: var(--accent-text-over);
+    }
+
     .socials {
       display: none;
     }
@@ -438,6 +443,20 @@ const isCurrentPage = (href: string) => {
       display: flex;
       justify-content: flex-end;
       gap: 0;
+    }
+
+    .social {
+      color: var(--accent-text-over);
+    }
+
+    .social:hover,
+    .social:focus {
+      color: var(--accent-light);
+    }
+
+    :global(.theme-dark) .social:hover,
+    :global(.theme-dark) .social:focus {
+      color: var(--accent-dark);
     }
   }
   @media (forced-colors: active) {
