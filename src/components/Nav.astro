@@ -301,13 +301,22 @@ const isCurrentPage = (href: string) => {
     display: flex;
     padding: var(--icon-padding);
     text-decoration: none;
-    color: var(--accent-dark);
+    color: var(--accent-text-over);
     transition: color var(--theme-transition);
   }
 
   .social:hover,
   .social:focus {
-    color: var(--accent-text-over);
+    color: var(--accent-regular);
+  }
+
+  :global(nav.scrolled) .social {
+    color: var(--gray-0);
+  }
+
+  :global(nav.scrolled) .social:hover,
+  :global(nav.scrolled) .social:focus {
+    color: var(--accent-regular);
   }
 
   .theme-toggle {
@@ -321,9 +330,9 @@ const isCurrentPage = (href: string) => {
     align-items: center;
     justify-content: center;
     padding: 0.4rem 1rem;
-    color: var(--accent-regular);
+    color: var(--accent-text-over);
     background-color: transparent;
-    border: 1px solid var(--accent-regular);
+    border: 1px solid var(--accent-text-over);
     border-radius: 999rem;
     text-decoration: none;
     font-weight: 600;
@@ -335,6 +344,16 @@ const isCurrentPage = (href: string) => {
   }
 
   .cv-link:hover {
+    background-color: var(--accent-text-over);
+    color: var(--accent-regular);
+  }
+
+  :global(nav.scrolled) .cv-link {
+    color: var(--accent-regular);
+    border-color: var(--accent-regular);
+  }
+
+  :global(nav.scrolled) .cv-link:hover {
     background-color: var(--accent-regular);
     color: var(--accent-text-over);
   }

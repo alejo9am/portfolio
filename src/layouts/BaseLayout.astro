@@ -172,6 +172,7 @@ const { title, description } = Astro.props;
 			.backgrounds {
 				min-height: 100%;
 				isolation: isolate;
+				position: relative;
 				background:
 					/*noise*/
 					url('/assets/backgrounds/noise.png') top center/220px repeat,
@@ -185,6 +186,18 @@ const { title, description } = Astro.props;
 					/*header1*/ var(--bg-svg-blend-mode),
 					/*header2*/ normal,
 					/*base*/ normal;
+			}
+
+			/* Parche CSS para teñir de rojo los fondos JPG antiguos (morados) */
+			.backgrounds::before {
+				content: "";
+				position: absolute;
+				inset: 0;
+				background-color: var(--accent-regular);
+				mix-blend-mode: hue;
+				z-index: -1;
+				opacity: 0.8;
+				pointer-events: none;
 			}
 			@media (forced-colors: active) {
 				/* Deactivate custom backgrounds for high contrast users. */
