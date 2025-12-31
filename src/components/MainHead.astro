@@ -35,6 +35,7 @@ const {
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="alternate icon" type="image/png" href="/favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
@@ -60,4 +61,36 @@ const {
 		});
 		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 	}
+</script>
+
+<script>
+  // Dynamic Favicon Color
+  // This script fetches the SVG favicon and updates its fill color to match the current CSS variable.
+  const updateFavicon = async () => {
+    const link = document.querySelector("link[rel='icon']") as HTMLLinkElement | null;
+    if (!link) return;
+
+    const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-regular').trim();
+    
+    try {
+      const res = await fetch('/favicon.svg');
+      const text = await res.text();
+      
+      // Replace fill color. Handles style="fill:..." or fill="..."
+      const newSvg = text.replace(/fill:[^;"]+/g, `fill:${accentColor}`).replace(/fill="[^"]+"/g, `fill="${accentColor}"`);
+      
+      const blob = new Blob([newSvg], { type: "image/svg+xml" });
+      const newUrl = URL.createObjectURL(blob);
+      link.href = newUrl;
+    } catch (e) {
+      console.error('Failed to update favicon color', e);
+    }
+  };
+
+  // Update on load
+  window.addEventListener('load', updateFavicon);
+
+  // Update on theme change (if accent color changes)
+  const observer = new MutationObserver(updateFavicon);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 </script>
