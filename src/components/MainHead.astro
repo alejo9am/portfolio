@@ -4,11 +4,13 @@ import '../styles/global.css';
 interface Props {
 	title?: string | undefined;
 	description?: string | undefined;
+	image?: string | undefined;
 }
 
 const {
-	title = 'Alejo Arenas: Personal Site',
-	description = 'The personal site of Alejo Arenas',
+	title = 'Alejo Arenas | Portfolio',
+	description = 'Portfolio de Alejo Arenas - Desarrollador Web y Diseñador Creativo. Especializado en JavaScript, Node.js y diseño UI/UX.',
+	image = '/assets/portrait.jpg',
 } = Astro.props;
 ---
 
@@ -17,6 +19,20 @@ const {
 <meta name="viewport" content="width=device-width" />
 <meta name="generator" content={Astro.generator} />
 <title>{title}</title>
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={Astro.url} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={new URL(image, Astro.url)} />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={Astro.url} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={new URL(image, Astro.url)} />
 
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
