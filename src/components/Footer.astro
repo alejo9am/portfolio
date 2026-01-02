@@ -47,6 +47,7 @@ const currentYear = new Date().getFullYear();
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    align-items: center;
   }
 
   .socials {
@@ -54,6 +55,17 @@ const currentYear = new Date().getFullYear();
     justify-content: center;
     gap: 1rem;
     flex-wrap: wrap;
+  }
+
+  @media (max-width: 50em) {
+    .group {
+      flex-direction: column-reverse;
+    }
+    
+    footer {
+      flex-direction: column-reverse;
+      gap: 1.5rem;
+    }
   }
 
   @media (min-width: 50em) {
