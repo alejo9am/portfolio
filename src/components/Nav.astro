@@ -352,16 +352,6 @@ const isCurrentPage = (href: string) => {
     color: var(--accent-regular);
   }
 
-  :global(nav.scrolled) .cv-link {
-    color: var(--accent-regular);
-    border-color: var(--accent-regular);
-  }
-
-  :global(nav.scrolled) .cv-link:hover {
-    background-color: var(--accent-regular);
-    color: var(--accent-text-over);
-  }
-
   @media (min-width: 50em) {
     nav {
       display: grid;
@@ -447,6 +437,16 @@ const isCurrentPage = (href: string) => {
     .cv-link:hover {
       background-color: var(--accent-text-over);
       color: var(--accent-regular);
+    }
+
+    :global(nav.scrolled) .cv-link {
+      color: var(--accent-regular);
+      border-color: var(--accent-regular);
+    }
+
+    :global(nav.scrolled) .cv-link:hover {
+      background-color: var(--accent-regular);
+      color: var(--accent-text-over);
     }
 
     .socials {
