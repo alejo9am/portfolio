@@ -17,16 +17,16 @@
   // "bash",
 
 const technologies = [
-  "php",
-  "HTML5",
-  "CSS3",
-  "javaScript",
-  "nodejs",
-  "express",
-  "git",
-  "mongodb",
-  "mysql",
-  "bash",
+  { name: "php", icon: "php" },
+  { name: "HTML5", icon: "HTML5" },
+  { name: "CSS3", icon: "CSS3" },
+  { name: "javaScript", icon: "javaScript" },
+  { name: "nodejs", icon: "nodejs" },
+  { name: "express", icon: "express", iconDark: "expressjs_dark" },
+  { name: "git", icon: "git" },
+  { name: "mongodb", icon: "mongodb", iconDark: "mongodb-icon-dark" },
+  { name: "mysql", icon: "mysql", iconDark: "mysql-icon-dark" },
+  { name: "bash", icon: "bash", iconDark: "bash_dark" },
 ];
 
 ---
@@ -36,16 +36,35 @@ const technologies = [
     {
       [...technologies, ...technologies, ...technologies].map((tech) => (
         <div class="logo-item">
-          <img
-            src={`/svg/${tech}.svg`}
-            alt={tech}
-            width="30"
-            height="30"
-            loading="eager"
-          />
-          <span>
-            {tech.charAt(0).toUpperCase() + tech.slice(1)}
-          </span>
+          {tech.iconDark ? (
+            <>
+              <img
+                class="icon-light"
+                src={`/svg/${tech.icon}.svg`}
+                alt={tech.name}
+                width="30"
+                height="30"
+                loading="eager"
+              />
+              <img
+                class="icon-dark"
+                src={`/svg/${tech.iconDark}.svg`}
+                alt={tech.name}
+                width="30"
+                height="30"
+                loading="eager"
+              />
+            </>
+          ) : (
+            <img
+              src={`/svg/${tech.icon}.svg`}
+              alt={tech.name}
+              width="30"
+              height="30"
+              loading="eager"
+            />
+          )}
+          <span>{tech.name.charAt(0).toUpperCase() + tech.name.slice(1)}</span>
         </div>
       ))
     }
@@ -115,5 +134,17 @@ const technologies = [
       gap: 5rem;
       animation-duration: 50s;
     }
+  }
+
+  .icon-dark {
+    display: none;
+  }
+
+  :global(.theme-dark) .icon-light {
+    display: none;
+  }
+
+  :global(.theme-dark) .icon-dark {
+    display: block;
   }
 </style>
