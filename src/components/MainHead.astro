@@ -61,6 +61,12 @@ const {
 		});
 		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 	}
+
+	// Listen for system theme changes and update the site theme accordingly.
+	window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
+		const isDark = event.matches;
+		document.documentElement.classList[isDark ? 'add' : 'remove']('theme-dark');
+	});
 </script>
 
 <script>
