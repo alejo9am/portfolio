@@ -8,10 +8,10 @@ const currentYear = new Date().getFullYear();
   <div class="group">
     <p>&copy; {currentYear}</p>
     <p>
-      Diseñado y desarrollado por Alejo Arenas con <a href="https://astro.build/"
-        >Astro</a
+      Diseñado y desarrollado por Alejo Arenas <span class="nowrap"
+        >con <a href="https://astro.build/">Astro</a>
+        <Icon icon="rocket-launch" size="1.2em" /></span
       >
-      <Icon icon="rocket-launch" size="1.2em" />
     </p>
   </div>
   <p class="socials">
@@ -50,6 +50,10 @@ const currentYear = new Date().getFullYear();
     align-items: center;
   }
 
+  .nowrap {
+    white-space: nowrap;
+  }
+
   .socials {
     display: flex;
     justify-content: center;
@@ -60,8 +64,9 @@ const currentYear = new Date().getFullYear();
   @media (max-width: 50em) {
     .group {
       flex-direction: column-reverse;
+      gap: 1rem;
     }
-    
+
     footer {
       flex-direction: column-reverse;
       gap: 1.5rem;
