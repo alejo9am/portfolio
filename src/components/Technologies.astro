@@ -32,9 +32,6 @@ const technologies = [
 ---
 
 <div class="logo-wall-container">
-  <div class="fade-overlay left"></div>
-  <div class="fade-overlay right"></div>
-
   <div class="scroll-track">
     {
       [...technologies, ...technologies, ...technologies].map((tech) => (
@@ -61,25 +58,8 @@ const technologies = [
     overflow: hidden;
     padding: 2rem 0;
     width: 100%;
-  }
-
-  .fade-overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 8rem;
-    z-index: 2;
-    pointer-events: none;
-  }
-
-  .fade-overlay.left {
-    left: 0;
-    background: linear-gradient(to right, var(--gray-999), transparent);
-  }
-
-  .fade-overlay.right {
-    right: 0;
-    background: linear-gradient(to left, var(--gray-999), transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   }
 
   .scroll-track {
