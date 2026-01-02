@@ -63,10 +63,17 @@ const {
 	}
 
 	// Listen for system theme changes and update the site theme accordingly.
-	window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => {
-		const isDark = event.matches;
+	const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+	const handleThemeChange = (e) => {
+		const isDark = e.matches;
 		document.documentElement.classList[isDark ? 'add' : 'remove']('theme-dark');
-	});
+	};
+
+	if (mediaQuery.addEventListener) {
+		mediaQuery.addEventListener('change', handleThemeChange);
+	} else {
+		mediaQuery.addListener(handleThemeChange);
+	}
 </script>
 
 <script>
