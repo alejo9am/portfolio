@@ -1,16 +1,16 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 
 interface Props {
-	title?: string | undefined;
-	description?: string | undefined;
-	image?: string | undefined;
+  title?: string | undefined;
+  description?: string | undefined;
+  image?: string | undefined;
 }
 
 const {
-	title = 'Alejo Arenas | Portfolio',
-	description = 'Portfolio de Alejo Arenas - Desarrollador Web y Diseñador Creativo. Especializado en JavaScript, Node.js y diseño UI/UX.',
-	image = '/assets/portrait.jpg',
+  title = "Alejo Arenas | Desarrollador de Software Full Stack",
+  description = "Portfolio de Alejo Arenas - Desarrollador Web y Diseñador Creativo. Especializado en JavaScript, Node.js y diseño UI/UX.",
+  image = "/assets/banner-center.png",
 } = Astro.props;
 ---
 
@@ -39,71 +39,85 @@ const {
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-	href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap"
-	rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;1,400&family=Rubik:wght@500;600&display=swap"
+  rel="stylesheet"
 />
 <script is:inline>
-	// This code is inlined in the head to make dark mode instant & blocking.
-	const getThemePreference = () => {
-		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-			return localStorage.getItem('theme');
-		}
-		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-	};
-	const isDark = getThemePreference() === 'dark';
-	document.documentElement.classList[isDark ? 'add' : 'remove']('theme-dark');
+  // This code is inlined in the head to make dark mode instant & blocking.
+  const getThemePreference = () => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  };
+  const isDark = getThemePreference() === "dark";
+  document.documentElement.classList[isDark ? "add" : "remove"]("theme-dark");
 
-	if (typeof localStorage !== 'undefined') {
-		// Watch the document element and persist user preference when it changes.
-		const observer = new MutationObserver(() => {
-			const isDark = document.documentElement.classList.contains('theme-dark');
-			localStorage.setItem('theme', isDark ? 'dark' : 'light');
-		});
-		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-	}
+  if (typeof localStorage !== "undefined") {
+    // Watch the document element and persist user preference when it changes.
+    const observer = new MutationObserver(() => {
+      const isDark = document.documentElement.classList.contains("theme-dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+  }
 
-	// Listen for system theme changes and update the site theme accordingly.
-	const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-	const handleThemeChange = (e) => {
-		const isDark = e.matches;
-		document.documentElement.classList[isDark ? 'add' : 'remove']('theme-dark');
-	};
+  // Listen for system theme changes and update the site theme accordingly.
+  const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  const handleThemeChange = (e) => {
+    const isDark = e.matches;
+    document.documentElement.classList[isDark ? "add" : "remove"]("theme-dark");
+  };
 
-	if (mediaQuery.addEventListener) {
-		mediaQuery.addEventListener('change', handleThemeChange);
-	} else {
-		mediaQuery.addListener(handleThemeChange);
-	}
+  if (mediaQuery.addEventListener) {
+    mediaQuery.addEventListener("change", handleThemeChange);
+  } else {
+    mediaQuery.addListener(handleThemeChange);
+  }
 </script>
 
 <script>
   // Dynamic Favicon Color
   // This script fetches the SVG favicon and updates its fill color to match the current CSS variable.
   const updateFavicon = async () => {
-    const link = document.querySelector("link[rel='icon']") as HTMLLinkElement | null;
+    const link = document.querySelector(
+      "link[rel='icon']",
+    ) as HTMLLinkElement | null;
     if (!link) return;
 
-    const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent-regular').trim();
-    
+    const accentColor = getComputedStyle(document.documentElement)
+      .getPropertyValue("--accent-regular")
+      .trim();
+
     try {
-      const res = await fetch('/favicon.svg');
+      const res = await fetch("/favicon.svg");
       const text = await res.text();
-      
+
       // Replace fill color. Handles style="fill:..." or fill="..."
-      const newSvg = text.replace(/fill:[^;"]+/g, `fill:${accentColor}`).replace(/fill="[^"]+"/g, `fill="${accentColor}"`);
-      
+      const newSvg = text
+        .replace(/fill:[^;"]+/g, `fill:${accentColor}`)
+        .replace(/fill="[^"]+"/g, `fill="${accentColor}"`);
+
       const blob = new Blob([newSvg], { type: "image/svg+xml" });
       const newUrl = URL.createObjectURL(blob);
       link.href = newUrl;
     } catch (e) {
-      console.error('Failed to update favicon color', e);
+      console.error("Failed to update favicon color", e);
     }
   };
 
   // Update on load
-  window.addEventListener('load', updateFavicon);
+  window.addEventListener("load", updateFavicon);
 
   // Update on theme change (if accent color changes)
   const observer = new MutationObserver(updateFavicon);
-  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
 </script>
