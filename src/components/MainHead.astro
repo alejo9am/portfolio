@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+import { getImage } from "astro:assets";
+import bannerImage from "../assets/banner-center.png";
 
 interface Props {
   title?: string | undefined;
@@ -10,8 +12,18 @@ interface Props {
 const {
   title = "Alejo Arenas | Desarrollador de Software Full Stack",
   description = "Portfolio de Alejo Arenas - Desarrollador Web y Diseñador Creativo. Especializado en JavaScript, Node.js y diseño UI/UX.",
-  image = "/assets/banner-center.png",
 } = Astro.props;
+
+let image = Astro.props.image;
+if (!image) {
+  const optimizedImage = await getImage({
+    src: bannerImage,
+    format: "png",
+    width: 1200,
+    height: 630,
+  });
+  image = optimizedImage.src;
+}
 ---
 
 <meta charset="UTF-8" />
