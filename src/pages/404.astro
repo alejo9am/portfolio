@@ -4,5 +4,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Not Found" description="404 Error — this page was not found">
-	<Hero title="Page Not Found" tagline="Not found" />
+	<div class="not-found-wrapper">
+		<Hero title="Page Not Found" tagline="Not found" />
+	</div>
 </BaseLayout>
+
+<style>
+	.not-found-wrapper {
+		display: grid;
+		place-items: center;
+		flex-grow: 1;
+	}
+</style>
