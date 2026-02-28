@@ -4,7 +4,7 @@ company: LaGuardia & Moreira
 link: https://laguardia-moreira.com
 date: "2023"
 order: 3
-description: Desarrollé una <strong>web app</strong> para el cálculo de márgenes financieros orientada al uso diario del equipo comercial, implementando la <strong>lógica principal de cálculo</strong> y el flujo completo de presupuestos. El resultado fue una herramienta más ágil y fácil de usar, que redujo el <strong>tiempo operativo</strong> gracias a una interfaz UX/UI simple y directa.
+description: Desarrollé una <strong>aplicación web</strong> a medida para calcular márgenes financieros que permitió al equipo de ventas <strong>agilizar</strong> la planificación de sus proyectos. Entregué una herramienta potente que les redujo las <strong>horas de trabajo</strong> mediante un diseño UX/UI limpio, simple y directo.
 technologies:
   - name: PHP
     icon: php-small
