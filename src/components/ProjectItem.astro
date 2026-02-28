@@ -280,6 +280,25 @@ const conceptTags = data.tags.filter((tag) => !getTagMeta(tag));
     color: var(--accent-text-over);
   }
 
+  @media (max-width: 50em) {
+    .project-item {
+      padding: 1.25rem;
+      border: 1px solid var(--gray-800);
+      border-radius: 1.5rem;
+      background: var(--gradient-subtle);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .project-item + .project-item {
+      margin-top: 1.5rem;
+    }
+
+    .links {
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+  }
+
   @media (min-width: 50em) {
     .project-item {
       flex-direction: row;
