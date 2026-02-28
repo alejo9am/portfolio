@@ -9,7 +9,7 @@ Mantener el contenido editable desde GitHub sin tocar componentes Astro, usando 
 ## Dónde se edita cada sección
 
 - Experiencia profesional: `src/content/experience/*.md`
-- Proyectos: `src/content/work/*.md`
+- Proyectos: `src/content/proyects/*.md`
 
 ## Añadir una nueva experiencia
 
@@ -23,14 +23,21 @@ company: Nombre de la empresa
 link: https://empresa.com
 date: "2024 - Presente"
 order: 3
-description: |
-  Descripción de la experiencia.
+description: Descripción redactada en un único párrafo.
+technologies:
+  - name: Python
+    icon: python
+  - name: Flask
+    icon: flask-light
+    iconDark: flask-dark
 ---
 ```
 
 Reglas:
 - `date` debe ir entre comillas para que sea string.
 - `order` define el orden visual (menor número aparece antes).
+- `description` usa redacción narrativa (sin listas).
+- En `technologies`, `iconDark` solo es necesario si existe versión dark.
 
 ## Editar una experiencia existente
 
@@ -40,7 +47,11 @@ Reglas:
 
 ## Añadir o editar proyectos
 
-Usar `src/content/work/*.md` con el mismo formato actual de cada proyecto (`title`, `description`, `publishDate`, `tags`, `img`, etc.).
+Usar `src/content/proyects/*.md` con el formato actual de cada proyecto (`title`, `description`, `publishDate`, `tags`, `img`, etc.).
+
+Reglas para `tags`:
+- Si la etiqueta coincide con una tecnología mapeada (ej. `PHP`, `MySQL`, `MongoDB`, `Express.js`, `Vercel`, `Figma`), se muestra con icono.
+- Si no coincide, se muestra como tag conceptual sin icono en una línea separada.
 
 ## Verificación antes de publicar
 
