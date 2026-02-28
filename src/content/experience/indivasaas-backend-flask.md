@@ -4,7 +4,7 @@ company: IndivaSaaS
 link: https://indivasaas.com/
 date: "2026 - Actualmente"
 order: 1
-description: Realizo prácticas como <strong>desarrollador backend</strong> en IndivaSaaS, donde participo en la modernización del núcleo del producto mediante una <strong>migración progresiva</strong> de módulos desde Django hacia Flask sin interrumpir el servicio. Este trabajo está enfocado en mejorar la <strong>mantenibilidad</strong> y la <strong>modularidad</strong> del sistema para facilitar la evolución de nuevas funcionalidades.
+description: Hago prácticas como <strong>desarrollador backend</strong> en IndivaSaaS, donde participo en la modernización del backend del proyecto mediante una <strong>migración</strong> de su API interna desde Django hacia Flask sin interrumpir el servicio. Este trabajo está enfocado en mejorar la <strong>flexibilidad</strong> y la <strong>eficiencia</strong> del sistema para facilitar la evolución del proyecto.
 technologies:
   - name: Python
     icon: python
