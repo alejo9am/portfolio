@@ -49,9 +49,41 @@ Reglas:
 
 Usar `src/content/proyects/*.md` con el formato actual de cada proyecto (`title`, `description`, `publishDate`, `tags`, `img`, etc.).
 
+Formato de `tags` (sin tocar código):
+
+```md
+tags:
+  - label: PHP
+    type: tech
+    icon: php-small
+  - label: MySQL
+    type: tech
+    icon: mysql
+    iconDark: mysql-icon-dark
+  - label: API REST
+    type: concept
+```
+
 Reglas para `tags`:
-- Si la etiqueta coincide con una tecnología mapeada (ej. `PHP`, `MySQL`, `MongoDB`, `Express.js`, `Vercel`, `Figma`), se muestra con icono.
-- Si no coincide, se muestra como tag conceptual sin icono en una línea separada.
+- `type: tech` se muestra en la línea de tecnologías (puede llevar icono).
+- `type: concept` se muestra en la línea de conceptos (sin icono).
+- `icon` apunta al nombre del archivo SVG en `public/svg` sin la extensión `.svg`.
+- `iconDark` es opcional y se usa solo cuando existe una variante para modo oscuro.
+
+Ejemplos válidos de icono:
+- `icon: figma` → usa `public/svg/figma.svg`
+- `icon: flask-light` + `iconDark: flask-dark`
+
+## Gestión de iconos
+
+Los iconos de contenido se guardan en `public/svg`.
+
+Para añadir un icono nuevo:
+1. Copiar el archivo SVG en `public/svg/`.
+2. Usar su nombre (sin `.svg`) en `icon` dentro del markdown correspondiente.
+3. Si hay una variante dark, añadir también `iconDark`.
+
+Con esto, cualquier cambio de iconos se hace en markdown y assets, sin editar componentes.
 
 ## Verificación antes de publicar
 
