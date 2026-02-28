@@ -3,6 +3,7 @@ title: MarginLab
 repo: https://github.com/alejo9am/marginlab
 link: https://marginlab.alejoarenas.dev/
 publishDate: 2020-03-02 00:00:00
+order: 1
 img: ../../assets/marginlab.png
 img_alt: Langing page of MarginLab application
 description: |

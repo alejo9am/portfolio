@@ -9,6 +9,7 @@ export const collections = {
       title: z.string(),
       description: z.string(),
       publishDate: z.coerce.date(),
+      order: z.number().int().optional(),
       tags: z.array(
         z.object({
           label: z.string(),

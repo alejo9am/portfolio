@@ -3,6 +3,7 @@ title: NewBank
 repo: https://github.com/alejo9am/newbank
 link: https://newbank.alejoarenas.dev/
 publishDate: 2019-12-01 00:00:00
+order: 3
 img: ../../assets/newbank.png
 img_alt: Landing page of Newbank application
 description: |

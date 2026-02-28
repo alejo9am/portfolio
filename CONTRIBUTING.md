@@ -49,6 +49,11 @@ Reglas:
 
 Usar `src/content/proyects/*.md` con el formato actual de cada proyecto (`title`, `description`, `publishDate`, `tags`, `img`, etc.).
 
+Orden de proyectos:
+- Usa `order` en el frontmatter para controlar el orden visual.
+- Menor número = aparece antes.
+- Para reordenar, solo cambia esos números en markdown.
+
 Formato de `tags` (sin tocar código):
 
 ```md
