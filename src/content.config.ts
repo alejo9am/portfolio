@@ -9,7 +9,14 @@ export const collections = {
       title: z.string(),
       description: z.string(),
       publishDate: z.coerce.date(),
-      tags: z.array(z.string()),
+      tags: z.array(
+        z.object({
+          label: z.string(),
+          type: z.enum(['tech', 'concept']),
+          icon: z.string().optional(),
+          iconDark: z.string().optional(),
+        }),
+      ),
       img: image(),
       img_alt: z.string().optional(),
       repo: z.string().optional(),

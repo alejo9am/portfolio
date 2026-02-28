@@ -11,19 +11,8 @@ interface Props {
 const { project, align = "left" } = Astro.props;
 const { data } = project;
 
-const tagIcons: Record<string, { icon: string; iconDark?: string }> = {
-  php: { icon: "php-small" },
-  mysql: { icon: "mysql", iconDark: "mysql-icon-dark" },
-  mongodb: { icon: "mongodb", iconDark: "mongodb-icon-dark" },
-  "express.js": { icon: "express", iconDark: "expressjs_dark" },
-  vercel: { icon: "vercel" },
-  figma: { icon: "figma" },
-  "prototipado en figma": { icon: "figma" },
-};
-
-const getTagMeta = (tag: string) => tagIcons[tag.toLowerCase()];
-const technologyTags = data.tags.filter((tag) => Boolean(getTagMeta(tag)));
-const conceptTags = data.tags.filter((tag) => !getTagMeta(tag));
+const technologyTags = data.tags.filter((tag) => tag.type === "tech");
+const conceptTags = data.tags.filter((tag) => tag.type === "concept");
 ---
 
 <article class:list={["project-item", { "align-right": align === "right" }]}>
@@ -60,39 +49,37 @@ const conceptTags = data.tags.filter((tag) => !getTagMeta(tag));
         technologyTags.length > 0 && (
           <div class="tags tags-tech" aria-label="Tecnologías del proyecto">
             {technologyTags.map((tag) => {
-              const tagMeta = getTagMeta(tag);
-
               return (
                 <span class:list={["tag", "tag-tech"]}>
-                  {tagMeta?.iconDark ? (
+                  {tag.icon && tag.iconDark ? (
                     <>
                       <img
                         class="icon-light"
-                        src={`/svg/${tagMeta.icon}.svg`}
-                        alt={tag}
+                        src={`/svg/${tag.icon}.svg`}
+                        alt={tag.label}
                         width="16"
                         height="16"
                         loading="lazy"
                       />
                       <img
                         class="icon-dark"
-                        src={`/svg/${tagMeta.iconDark}.svg`}
-                        alt={tag}
+                        src={`/svg/${tag.iconDark}.svg`}
+                        alt={tag.label}
                         width="16"
                         height="16"
                         loading="lazy"
                       />
                     </>
-                  ) : (
+                  ) : tag.icon ? (
                     <img
-                      src={`/svg/${tagMeta?.icon}.svg`}
-                      alt={tag}
+                      src={`/svg/${tag.icon}.svg`}
+                      alt={tag.label}
                       width="16"
                       height="16"
                       loading="lazy"
                     />
-                  )}
-                  {tag}
+                  ) : null}
+                  {tag.label}
                 </span>
               );
             })}
@@ -104,7 +91,7 @@ const conceptTags = data.tags.filter((tag) => !getTagMeta(tag));
         conceptTags.length > 0 && (
           <div class="tags tags-concept" aria-label="Conceptos del proyecto">
             {conceptTags.map((tag) => (
-              <span class:list={["tag", "tag-concept"]}>{tag}</span>
+              <span class:list={["tag", "tag-concept"]}>{tag.label}</span>
             ))}
           </div>
         )

@@ -8,8 +8,19 @@ img_alt: Página principal de la aplicación web Librería Online mostrando una 
 description: |
   Aplicación web que implementa un sistema completo de gestión de librería con arquitectura cliente-servidor, incluyendo una SPA (Single Page Application) en el frontend y una API REST en el backend.
 tags:
-  - SPA
-  - MongoDB
-  - Express.js
-  - API REST
+  - label: MongoDB
+    type: tech
+    icon: mongodb
+    iconDark: mongodb-icon-dark
+  - label: Express.js
+    type: tech
+    icon: express
+    iconDark: expressjs_dark
+  - label: JavaScript avanzado
+    type: tech
+    icon: javaScript
+  - label: SPA
+    type: concept
+  - label: API REST
+    type: concept
 ---
