@@ -34,15 +34,19 @@ const experiences = (await getCollection("experience")).sort(
       <header class="hero" id="top">
         <Hero
           title="Alejo Arenas"
-          tagline="Desarrollador Web y Diseñador Creativo"
+          tagline="Desarrollador web centrado en UX y backend."
           align="start"
         >
           <div class="roles">
-            <Pill><Icon icon="code" size="1.33em" /> Desarrollador</Pill>
-            <Pill><Icon icon="creative" size="1.33em" /> Creativo</Pill>
-            <Pill><Icon icon="pencil-line" size="1.33em" /> Diseñador</Pill>
+            <Pill><Icon icon="code" size="1.33em" /> Frontend</Pill>
+            <Pill><Icon icon="terminal-window" size="1.33em" /> Backend</Pill>
+            <Pill><Icon icon="pencil-line" size="1.33em" /> UX/UI</Pill>
           </div>
           <div class="cta-wrapper">
+            <CallToAction href="#work" variant="primary" size="md">
+              Ver proyectos
+              <Icon icon="arrow-right" size="1.2em" />
+            </CallToAction>
             <CallToAction
               href="https://drive.google.com/file/d/1-1FEx6wPhNnPGgnzvS2p650ZdeNoCNRh/view?usp=sharing"
               variant="secondary"
@@ -107,6 +111,8 @@ const experiences = (await getCollection("experience")).sort(
 
   .cta-wrapper {
     display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
     justify-content: center;
     margin-top: 0.5rem;
   }

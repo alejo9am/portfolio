@@ -3,11 +3,16 @@ interface Props {
   title: string;
   company: string;
   description: string;
+  technologies: Array<{
+    name: string;
+    icon?: string;
+    iconDark?: string;
+  }>;
   link?: string;
   date: string;
 }
 
-const { title, company, description, link, date } = Astro.props;
+const { title, company, description, technologies, link, date } = Astro.props;
 ---
 
 <div class="experience-item">
@@ -15,18 +20,63 @@ const { title, company, description, link, date } = Astro.props;
     <div class="timeline-dot">&bull;</div>
     <h3 class="title">{title}</h3>
     <h4 class="company">
-      {link ? (
-        <a href={link} target="_blank" rel="noopener noreferrer" class="company-link">
-          {company}
-        </a>
-      ) : (
-        company
-      )}
+      {
+        link ? (
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="company-link"
+          >
+            {company}
+          </a>
+        ) : (
+          company
+        )
+      }
     </h4>
     <time datetime={date} class="date">{date}</time>
   </div>
   <div class="description">
-    {description}
+    <p class="text" set:html={description} />
+    <div class="tech-list" aria-label={`Tecnologías usadas en ${title}`}>
+      {
+        technologies.map((tech) => (
+          <span class="tech-chip">
+            {tech.icon && tech.iconDark ? (
+              <>
+                <img
+                  class="icon-light"
+                  src={`/svg/${tech.icon}.svg`}
+                  alt={tech.name}
+                  width="18"
+                  height="18"
+                  loading="lazy"
+                />
+                <img
+                  class="icon-dark"
+                  src={`/svg/${tech.iconDark}.svg`}
+                  alt={tech.name}
+                  width="18"
+                  height="18"
+                  loading="lazy"
+                />
+              </>
+            ) : tech.icon ? (
+              <img
+                class:list={{ "php-small-icon": tech.icon === "php-small" }}
+                src={`/svg/${tech.icon}.svg`}
+                alt={tech.name}
+                width="18"
+                height="18"
+                loading="lazy"
+              />
+            ) : null}
+            {tech.name}
+          </span>
+        ))
+      }
+    </div>
   </div>
 </div>
 
@@ -42,7 +92,7 @@ const { title, company, description, link, date } = Astro.props;
 
   /* Vertical line */
   .experience-item::before {
-    content: '';
+    content: "";
     position: absolute;
     left: -35px;
     display: block;
@@ -97,29 +147,86 @@ const { title, company, description, link, date } = Astro.props;
   .description {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
     padding-bottom: 1rem;
     color: var(--gray-300);
+  }
+
+  .text {
+    font-size: var(--text-md);
+    line-height: 1.65;
+  }
+
+  .text :global(strong) {
+    color: var(--gray-100);
+    font-weight: 700;
+  }
+
+  .tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+  }
+
+  .tech-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.65rem;
+    border-radius: 999rem;
+    border: 1px solid var(--gray-700);
+    background: var(--gray-999_40);
+    color: var(--gray-200);
+    font-size: var(--text-sm);
+    line-height: 1.2;
+    font-weight: 500;
+  }
+
+  .tech-chip img {
+    width: 1.15rem;
+    height: 1.15rem;
+    object-fit: contain;
+  }
+
+  .tech-chip img.php-small-icon {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+
+  .icon-dark {
+    display: none;
+  }
+
+  :global(.theme-dark) .icon-light {
+    display: none;
+  }
+
+  :global(.theme-dark) .icon-dark {
+    display: block;
+  }
+
+  :global(.theme-dark) .tech-chip img.php-small-icon {
+    filter: brightness(0) invert(1);
   }
 
   @media (min-width: 768px) {
     .experience-item {
       grid-template-columns: 2fr 3fr;
     }
-    
+
     .header {
       grid-column: span 2; /* Or adjust based on desired layout */
     }
-    
+
     /* Adjusting to match the original md:grid-cols-5 layout logic if needed */
     .experience-item {
-        grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(5, 1fr);
     }
     .header {
-        grid-column: span 2;
+      grid-column: span 2;
     }
     .description {
-        grid-column: span 3;
+      grid-column: span 3;
     }
   }
 

@@ -1,85 +1,94 @@
 ---
 interface Props {
-	href: string;
-	size?: 'md' | 'lg';
-	variant?: 'primary' | 'secondary';
+  href: string;
+  size?: "md" | "lg";
+  variant?: "primary" | "secondary";
 }
 
-const { href, size = 'lg', variant = 'primary' } = Astro.props;
+const { href, size = "lg", variant = "primary" } = Astro.props;
+const isExternalLink = /^(https?:)?\/\//.test(href);
 ---
 
-<a href={href} class:list={[variant, size]} target="_blank" rel="noopener noreferrer"><slot /></a>
+<a
+  href={href}
+  class:list={[variant, size]}
+  target={isExternalLink ? "_blank" : undefined}
+  rel={isExternalLink ? "noopener noreferrer" : undefined}><slot /></a
+>
 
 <style>
-	a {
-		position: relative;
-		display: flex;
-		place-content: center;
-		text-align: center;
-		padding: 0.56em 2em;
-		gap: 0.8em;
-		color: var(--accent-text-over);
-		text-decoration: none;
-		line-height: 1.1;
-		border-radius: 999rem;
-		overflow: hidden;
-		white-space: nowrap;
-		transition: color var(--theme-transition), background-color var(--theme-transition), border-color var(--theme-transition);
-	}
+  a {
+    position: relative;
+    display: flex;
+    place-content: center;
+    text-align: center;
+    padding: 0.56em 2em;
+    gap: 0.8em;
+    color: var(--accent-text-over);
+    text-decoration: none;
+    line-height: 1.1;
+    border-radius: 999rem;
+    overflow: hidden;
+    white-space: nowrap;
+    transition:
+      color var(--theme-transition),
+      background-color var(--theme-transition),
+      border-color var(--theme-transition);
+  }
 
-	/* Primary Variant */
-	.primary {
-		background: var(--gradient-accent);
-		box-shadow: var(--shadow-md);
-		border: 1px solid transparent;
-	}
+  /* Primary Variant */
+  .primary {
+    background: var(--gradient-accent);
+    box-shadow: var(--shadow-md);
+    border: 1px solid transparent;
+  }
 
-	/* Secondary Variant */
-	.secondary {
-		background: transparent;
-		color: var(--accent-regular);
-		border: 1px solid var(--accent-regular);
-	}
+  /* Secondary Variant */
+  .secondary {
+    background: transparent;
+    color: var(--accent-regular);
+    border: 1px solid var(--accent-regular);
+  }
 
-	.secondary:hover {
-		background: var(--accent-regular);
-		color: var(--accent-text-over);
-	}
+  .secondary:hover {
+    background: var(--accent-regular);
+    color: var(--accent-text-over);
+  }
 
-	@media (min-width: 20em) {
-		a {
-			font-size: var(--text-lg);
-		}
-		
-		a.md {
-			font-size: var(--text-base);
-		}
-	}
+  @media (min-width: 20em) {
+    a {
+      font-size: var(--text-lg);
+    }
 
-	/* Overlay for hover effects (Primary only) */
-	.primary::after {
-		content: '';
-		position: absolute;
-		inset: 0;
-		pointer-events: none;
-		transition: background-color var(--theme-transition);
-		mix-blend-mode: overlay;
-	}
+    a.md {
+      font-size: var(--text-base);
+    }
+  }
 
-	.primary:focus::after,
-	.primary:hover::after {
-		background-color: hsla(var(--gray-999-basis), 0.3);
-	}
+  /* Overlay for hover effects (Primary only) */
+  .primary::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    transition: background-color var(--theme-transition);
+    mix-blend-mode: overlay;
+  }
 
-	@media (min-width: 50em) {
-		a {
-			padding: 1.125rem 2.5rem;
-			font-size: var(--text-xl);
-		}
+  .primary:focus::after,
+  .primary:hover::after {
+    background-color: hsla(var(--gray-999-basis), 0.3);
+  }
 
-		a.md {
-			padding: 0.5rem 1.5rem;
-			font-size: var(--text-md);
-		}
-	}
+  @media (min-width: 50em) {
+    a {
+      padding: 1.125rem 2.5rem;
+      font-size: var(--text-xl);
+    }
+
+    a.md {
+      padding: 0.5rem 1.5rem;
+      font-size: var(--text-md);
+    }
+  }
 </style>
