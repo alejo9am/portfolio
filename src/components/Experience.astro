@@ -1,24 +1,12 @@
 ---
+import type { CollectionEntry } from "astro:content";
 import ExperienceItem from "./ExperienceItem.astro";
 
-const EXPERIENCE = [
-  {
-    date: "2023 - Present",
-    title: "Organización en la \"Liga del Código\"",
-    company: "Universidad de Castilla-La Mancha",
-    link: "https://www.uclm.es/",
-    description:
-      "Participación como becario en “La Liga del Código”, una actividad dirigida a los alumnos de primer curso de Ingeniería Informática, que consiste en la enseñanza de programación en lenguajes como C y Java mediante técnicas de gamificación. Mis tareas dentro de la actividad incluyen proponer ejercicios prácticos, resolverlos con los alumnos y resolver sus dudas durante la competición.",
-  },
-  {
-    date: "2023",
-    title: "Desarrollador de web app en PHP",
-    company: "LaGuardia & Moreira",
-    link: "https://laguardia-moreira.com",
-    description:
-      "Desarrollé una herramienta web (PHP, JavaScript y HTML/CSS) para cálculos de márgenes financieros, ofreciendo una aplicación potente con un diseño UX/UI minimalista. Gracias a su interfaz intuitiva y su facilidad de cálculo, la herramienta simplificó en gran medida la planificación de presupuestos por parte del personal de ventas.",
-  },
-];
+interface Props {
+  experiences: CollectionEntry<"experience">[];
+}
+
+const { experiences } = Astro.props;
 ---
 
 <section class="experience-section" id="experience">
@@ -31,13 +19,13 @@ const EXPERIENCE = [
     <div class="timeline-wrapper" aria-label="Experiencia profesional">
       <ol class="timeline-list">
         {
-          EXPERIENCE.map((experience, index) => (
+          experiences.map(({ data }, index) => (
             <li>
               <article
                 role="article"
                 aria-labelledby={`experience-title-${index}`}
               >
-                <ExperienceItem {...experience} />
+                <ExperienceItem {...data} />
               </article>
             </li>
           ))

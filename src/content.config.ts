@@ -16,4 +16,15 @@ export const collections = {
 			link: z.string().optional(),
 		}),
 	}),
+	experience: defineCollection({
+		loader: glob({ base: './src/content/experience', pattern: '**/*.md' }),
+		schema: z.object({
+			title: z.string(),
+			company: z.string(),
+			date: z.string(),
+			description: z.string(),
+			order: z.number().int(),
+			link: z.string().optional(),
+		}),
+	}),
 };

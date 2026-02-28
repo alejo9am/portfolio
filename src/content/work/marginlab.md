@@ -9,6 +9,7 @@ description: |
   Este proyecto es la evolución de un software utilizado internamente por una empresa del sector de la construcción y reformas. Su objetivo es permitir a los comerciales calcular márgenes de beneficio complejos y gestionar presupuestos con precisión milimétrica.
 tags:
   - PHP
+  - MySQL
   - Creación de Sandbox Segura
   - Despliegue en Vercel
 ---
